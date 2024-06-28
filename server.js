@@ -2,8 +2,8 @@ const express = require('express')
 
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Hello')
+app.get('/greetings/:username', (req, res) => {
+    res.send(`What\'s up ${req.params.username}`)
 })
 
 app.listen(3000, () => {
