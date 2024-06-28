@@ -1,4 +1,10 @@
 const express = require('express')
+const collectibles = [
+    { name: 'shiny ball', price: 5.95 },
+    { name: 'autographed picture of a dog', price: 10 },
+    { name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99 }
+];
+
 
 const app = express()
 
@@ -14,6 +20,17 @@ app.get('/roll/:rollNumber', (req, res) => {
     }
     else {
         res.send(`You rolled ${Math.floor(userReq * Math.random())}`)
+    }
+})
+
+app.get('/collectibles/:idx', (req, res) => {
+    let userReq = parseInt(req.params.idx)
+    if (userReq >= 0 && userReq < collectibles.length) {
+
+        res.send(`You\'ve selected ${collectibles[userReq].name}, that will be $${collectibles[userReq].price}.Thank you!`)
+    }
+    else {
+        res.send('This item is not yet in stock')
     }
 })
 
